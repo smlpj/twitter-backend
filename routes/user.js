@@ -5,7 +5,10 @@ const router = express.Router();
 
 //Create user
 router.post("/users", (req, res) => {
-  const user = userSchema(req.body);
+  const user = userSchema({
+    name: req.body.name,
+    age: req.body.age,
+  });
   user
     .save()
     .then((data) => {
@@ -43,7 +46,9 @@ router.get("/users/:id", (req, res) => {
 //Update user by id
 router.patch("/users/:id", (req, res) => {
   userSchema
-    .findByIdAndUpdate(req.params.id, req.body)
+    .findByIdAndUpdate(req.params.id, {
+      $set: { name: req.body.name, age: req.body.age },
+    })
     .then((data) => {
       res.json(data);
     })

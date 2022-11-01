@@ -12,14 +12,17 @@ const userSchema = mongoose.Schema({
   tweets: {
     type: Array,
     required: false,
+    default: [],
   },
   followers: {
     type: Array,
     required: false,
+    default: [],
   },
   following: {
     type: Array,
     required: false,
+    default: [],
   },
 });
 
