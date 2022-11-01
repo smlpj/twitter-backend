@@ -16,4 +16,16 @@ router.post("/users", (req, res) => {
     });
 });
 
+//Get all users
+router.get("/users", (req, res) => {
+  userSchema
+    .find()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json({ message: err });
+    });
+});
+
 module.exports = router;
