@@ -1,30 +1,22 @@
 const mongoose = require("mongoose");
+const express = require("express");
 
-const url = "mongodb://localhost/twitter-database";
+const app = express();
+const port = 9000;
 
-mongoose
-  .connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Conectado a MongoDB."))
-  .catch((err) => console.log("Error al conectar a MongoDB.", err));
-
-const userSchema = mongoose.Schema({
-  name: String,
-  age: Number,
-  tweets: Array,
-  followers: Array,
-  following: Array,
+//Routes
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-const UserModel = mongoose.model("users", userSchema);
+//MongoDB connection
+mongoose
+  .connect("mongodb://localhost:27017/twitter-database")
+  .then(() => {
+    console.log("Conectado a MongoDB");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
-//Show
-
-const show = async () => {
-  const users = await UserModel.find();
-  console.log(users);
-};
-
-show();
+app.listen(port, () => console.log(`App listening on port: ${port}!`));
