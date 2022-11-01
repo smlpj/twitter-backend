@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const userRoutes = require("./routes/user");
 
 const app = express();
 const port = 9000;
 
+//Using /api as a prefix for all routes
+app.use(express.json());
+app.use("/api", userRoutes);
 //Routes
 app.get("/", (req, res) => {
   res.send("Hello World!");
