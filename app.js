@@ -14,7 +14,7 @@ app.use("/api", tweetRoutes);
 app.use("/api", followRoutes);
 //Routes
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Twitter Backend App");
 });
 
 //MongoDB connection

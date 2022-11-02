@@ -45,4 +45,27 @@ router.get("/followers/:userId", (req, res) => {
     });
 });
 
+//Unfollow a user and remove it from user followers
+router.delete("/unfollow", (req, res) => {
+  userSchema
+    .findByIdAndUpdate(req.body.user, {
+      $pull: { following: req.body.following },
+    })
+    .then((data) => {
+      userSchema
+        .findByIdAndUpdate(req.body.following, {
+          $pull: { followers: req.body.user },
+        })
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((err) => {
+          res.json({ message: err });
+        });
+    })
+    .catch((err) => {
+      res.json({ message: err });
+    });
+});
+
 module.exports = router;
