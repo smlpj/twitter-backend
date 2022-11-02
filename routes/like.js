@@ -28,7 +28,7 @@ router.post("/like", async (req, res) => {
 });
 
 // Read all likes by user id
-router.get("/like:userId", async (req, res) => {
+router.get("/like/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
     const user = await userSchema.findById(userId);

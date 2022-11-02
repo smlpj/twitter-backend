@@ -4,6 +4,7 @@ const userRoutes = require("./routes/user");
 const tweetRoutes = require("./routes/tweet");
 const followRoutes = require("./routes/follow");
 const likeRoutes = require("./routes/like");
+const timelineRoutes = require("./routes/timeline");
 
 const app = express();
 const port = 9000;
@@ -14,6 +15,7 @@ app.use("/api", userRoutes);
 app.use("/api", tweetRoutes);
 app.use("/api", followRoutes);
 app.use("/api", likeRoutes);
+app.use("/api", timelineRoutes);
 //Routes
 app.get("/", (req, res) => {
   res.send("Twitter Backend App");
