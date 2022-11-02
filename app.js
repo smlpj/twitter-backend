@@ -16,6 +16,7 @@ app.use("/api", tweetRoutes);
 app.use("/api", followRoutes);
 app.use("/api", likeRoutes);
 app.use("/api", timelineRoutes);
+
 //Routes
 app.get("/", (req, res) => {
   res.send("Twitter Backend App");
@@ -31,4 +32,4 @@ mongoose
     console.error(err);
   });
 
-app.listen(port, () => console.log(`App listening on port: ${port}!`));
+app.listen(port, () => console.log(`App escuchando en port: ${port}!`));
